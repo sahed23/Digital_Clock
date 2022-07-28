@@ -8,26 +8,20 @@ function digitalClock() {
 
   let Time = new Date();
   let mainHour = Time.getHours();
-  let hours = mainHour % 12 == 0 ? 12: mainHour % 12;
-  let minutes = Time.getMinutes();
-  let seconds = Time.getSeconds();
-
+  let hh = mainHour % 12 == 0 ? 12: mainHour % 12;
+  let mm = Time.getMinutes();
+  let ss = Time.getSeconds();
+  
+ let hours = hh < 10 ?  `0${hh}` : hh ;
+ let minutes = mm < 10 ? `0${mm}` : mm;
+ let seconds = ss < 10 ?  `0${ss}` : ss ;
+ 
   secondsDiv.innerHTML = seconds;
-  if (seconds <= 9) {
-    secondsDiv.innerHTML = ` 0${seconds} `;
-  }
   if (seconds == 0) {
     minutesDiv.innerHTML = minutes;
-    if (minutes <= 9) {
-
-      minutesDiv.innerHTML = ` 0${minutes} `;
-    }
   }
   if (seconds == 0 && minutes == 0) {
     hoursDiv.innerHTML = hours;
-    if (hours <= 9) {
-      hoursDiv.innerHTML = ` 0${hours} `;
-    }
   }
 
 
@@ -36,12 +30,6 @@ function digitalClock() {
   if (i == 1) {
     minutesDiv.innerHTML = minutes;
     hoursDiv.innerHTML = hours;
-    if (minutes <= 9) {
-      minutesDiv.innerHTML = ` 0${minutes} `;
-    }
-    if (hours <= 9) {
-      hoursDiv.innerHTML = ` 0${hours} `;
-    }
     i = 2;
   } // for initial call call
 
